@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.56.10:3306/gulimall_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        ip: 192.168.56.1
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: c839f3e8-dbf9-4913-8d10-d50bf69e80fb
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    host: 192.168.56.10
+    port: 6379
+  thymeleaf:
+    cache: false
+mybatis-plus:
+  mapper-locations: classpath:/mapper/product/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+logging:
+  level:
+    com.panpan.gulimall: info

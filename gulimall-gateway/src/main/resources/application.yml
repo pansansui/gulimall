@@ -1,0 +1,76 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: member
+          uri: lb://gulimall-member
+          predicates:
+            - Path=/renren-fast/member/**
+          filters:
+            - RewritePath=/renren-fast(?<segment>/?.*),$\{segment}
+
+        - id: ware
+          uri: lb://gulimall-ware
+          predicates:
+            - Path=/renren-fast/ware/**
+          filters:
+            - RewritePath=/renren-fast(?<segment>/?.*),$\{segment}
+
+        - id: product
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/renren-fast/product/**
+          filters:
+            - RewritePath=/renren-fast(?<segment>/?.*),$\{segment}
+
+        - id: thirdparty
+          uri: lb://third-party
+          predicates:
+            - Path=/renren-fast/thirdparty/**
+          filters:
+            - RewritePath=/renren-fast(?<segment>/?.*),$\{segment}
+
+        - id: coupon
+          uri: lb://gulimall-coupon
+          predicates:
+            - Path=/renren-fast/coupon/**
+          filters:
+            - RewritePath=/renren-fast(?<segment>/?.*),$\{segment}
+
+        - id: order
+          uri: lb://gulimall-order
+          predicates:
+            - Path=/renren-fast/order/**
+          filters:
+            - RewritePath=/renren-fast(?<segment>/?.*),$\{segment}
+
+        - id: renren
+          uri: lb://renren-fast
+          predicates:
+            - Path=/renren-fast/**
+
+        - id: gulimall-essearch
+          uri: lb://gulimall-essearch
+          predicates:
+              - Host=search.gulimall.com
+
+        - id: auth-server
+          uri: lb://auth-server
+          predicates:
+              - Host=auth.gulimall.com
+
+        - id: gulimall-main
+          uri: lb://gulimall-product
+          predicates:
+            - Host=**.gulimall.com,gulimall.com,item.gulimall.com
+#测试2023,3.8
+        - id: gulimall-main
+            uri: lb://gulimall-product
+            predicates:
+              - Host=**.baidu.com
+
+logging:
+  level:
+    com.panpan.gulimall: error
+
+
